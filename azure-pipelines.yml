@@ -19,6 +19,16 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Free Trial (98a11b95-fc66-4005-a737-e5dd517339bc)'
+    appType: 'webApp'
+    WebAppName: 'OctopusTestdeplaoyement'
+    deployToSlotOrASE: true
+    ResourceGroupName: 'Octopus'
+    SlotName: 'QAT'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
     restoreSolution: '$(solution)'
 
 - task: VSBuild@1
